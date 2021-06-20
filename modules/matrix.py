@@ -62,13 +62,22 @@ def Cv():
     return Cv
 
 
-def A(N):
+def A(N,L):
     A = np.append(np.eye(N),np.zeros([N,1]),axis=1)
     for i in range(N):
         A[i,i+1] = -1
+    A = A/(L/N)
 
     return A
 
+def B(N,L):
+    B = np.append(np.eye(N-1),np.zeros([N-1,2]),axis=1)
+    for i in range(N-1):
+        B[i,i+1] = -2
+        B[i,i+2] = 1
+    B = B/(L/N)**2
+
+    return B
 """
 def H(length):
     G = np.eye(length)
